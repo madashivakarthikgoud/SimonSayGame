@@ -1,24 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simon Says Ultimate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <h1>Simon Says Game</h1>
-    <h2>Press any key to start</h2>
-    <div class="btn-container">
-        <div class="line-one">
-            <div class="btn red" type="button" id="red"></div>
-            <div class="btn yellow" type="button" id="yellow"></div>
-        </div>
-        <div class="line-two">
-            <div class="btn green" type="button" id="green"></div>
-            <div class="btn purple" type="button" id="purple"></div>
-        </div>
+<body data-theme="light">
+  <div class="background"></div>
+  <div class="game-wrapper">
+    <header class="game-header">
+      <h1>Simon Says Ultimate</h1>
+      <div class="info-panel">
+        <div class="info"><span>Level</span><strong id="level">0</strong></div>
+        <div class="info"><span>Score</span><strong id="score">0</strong></div>
+        <div class="info"><span>High</span><strong id="highscore">0</strong></div>
+      </div>
+      <div class="controls">
+        <button id="start" class="btn">Start</button>
+        <button id="theme-toggle" class="btn">🌙</button>
+      </div>
+    </header>
+    <main class="grid">
+      <div class="cell" id="red"    data-sound="sounds/red.mp3" aria-label="Red tile"></div>
+      <div class="cell" id="green"  data-sound="sounds/green.mp3" aria-label="Green tile"></div>
+      <div class="cell" id="blue"   data-sound="sounds/blue.mp3" aria-label="Blue tile"></div>
+      <div class="cell" id="yellow" data-sound="sounds/yellow.mp3" aria-label="Yellow tile"></div>
+    </main>
+    <!-- In-UI Message Overlay -->
+    <div id="message-overlay" class="overlay hidden">
+      <div class="message-box">
+        <p id="message-text"></p>
+        <button id="restart" class="btn">Restart</button>
+      </div>
     </div>
-    <script src="app.js"></script>
+    <footer class="game-footer">
+      <p>© 2025 Simon Says Ultimate • Crafted with care</p>
+    </footer>
+  </div>
+  <script src="app.js"></script>
 </body>
 </html>

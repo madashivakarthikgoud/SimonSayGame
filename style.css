@@ -1,32 +1,162 @@
-body{
+:root {
+    --clr-red:    #ff4f4f;
+    --clr-green:  #4fff7e;
+    --clr-blue:   #4fafff;
+    --clr-yellow: #ffe44f;
+  
+    --bg-light: #f0f4fd;
+    --bg-dark:  #1a1a2e;
+    --glass-l:  rgba(255,255,255,0.25);
+    --glass-d:  rgba(20,20,35,0.6);
+    --txt-light: #1a1a2e;
+    --txt-dark:  #ececec;
+    --transition: 0.3s ease;
+    --font: 'Inter', sans-serif;
+  }
+  
+  body[data-theme="light"] {
+    --bg: var(--bg-light);
+    --glass: var(--glass-l);
+    --txt: var(--txt-light);
+  }
+  body[data-theme="dark"] {
+    --bg: var(--bg-dark);
+    --glass: var(--glass-d);
+    --txt: var(--txt-dark);
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font);
+  }
+  body {
+    background: var(--bg);
+    color: var(--txt);
+    overflow: hidden;
+  }
+  .background {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center,
+      rgba(0,0,0,0.05), transparent 70%);
+    pointer-events: none;
+  }
+  .game-wrapper {
+    position: relative;
+    max-width: 450px;
+    margin: 60px auto;
+    backdrop-filter: blur(10px);
+    background: var(--glass);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    overflow: hidden;
+    transition: transform var(--transition);
+  }
+  .game-wrapper:hover {
+    transform: scale(1.01);
+  }
+  
+  .game-header {
+    padding: 1rem;
     text-align: center;
-}
-.btn{
-    height: 180px;
-    width: 180px;
-    border-radius: 20%;
-    border: 10px solid black;
-    margin: 1.5rem;
-}
-.btn-container{
+  }
+  .game-header h1 {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+  }
+  .info-panel {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 0.75rem;
+  }
+  .info span {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+  }
+  .info strong {
+    font-size: 1.2rem;
+  }
+  .controls {
     display: flex;
     justify-content: center;
-}
-.yellow{
-    background-color: #f99b45;
-}
-.green{
-    background-color: #63aaC0;
-}
-.purple{
-    background-color: #819ff9;
-}
-.red{
-    background-color: #d95980;
-}
-.flash{
-    background-color: white;
-}
-.userFlash{
-    background-color: green;
-}
+    gap: 0.5rem;
+  }
+  .btn {
+    padding: 0.5rem 1rem;
+    background: var(--glass);
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+    color: inherit;
+  }
+  .btn:hover {
+    background: rgba(255,255,255,0.35);
+  }
+  /* White button text in dark mode */
+  body[data-theme="dark"] .btn {
+    color: #ffffff;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 1rem;
+  }
+  .cell {
+    aspect-ratio: 1/1;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: transform var(--transition),
+                filter var(--transition);
+    background-color: var(--clr-red);
+  }
+  .cell#green  { background-color: var(--clr-green); }
+  .cell#blue   { background-color: var(--clr-blue); }
+  .cell#yellow { background-color: var(--clr-yellow); }
+  .cell:hover  { filter: brightness(1.2); }
+  .cell.active {
+    transform: scale(1.15);
+    filter: brightness(1.5)
+            drop-shadow(0 0 15px rgba(255,255,255,0.5));
+  }
+  
+  /* Overlay & Message Box */
+  .overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+  }
+  .hidden { display: none; }
+  .message-box {
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 1rem;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  }
+  .message-box p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  #restart {
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .game-footer {
+    text-align: center;
+    font-size: 0.8rem;
+    padding: 0.5rem;
+  }
+  
